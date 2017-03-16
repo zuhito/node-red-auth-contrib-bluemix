@@ -22,6 +22,7 @@
   "homepage": "https://github.com/zuhito/node-red-auth-contrib-bluemix#readme",
   "dependencies": {
     "when": "*",
-    "cloud-foundry": "*"
+    "cf-nodejs-client": "*",
+    "cfenv": "*"
   }
 }
