@@ -16,23 +16,21 @@ module.exports = {
            var endpoint = "http://api.ng.bluemix.net";
            var cc = new (require("cf-nodejs-client")).CloudController(endpoint);
            var uaa = new (require("cf-nodejs-client")).UsersUAA;
-           Apps = new (require("cf-nodejs-client")).Apps(endpoint);
+           var apps = new (require("cf-nodejs-client")).Apps(endpoint);
 
            cc.getInfo().then( (result) => {
            uaa.setEndPoint(result.authorization_endpoint);
                return uaa.login(username, password);
            }).then( (result) => {
-               Apps.setToken(result);
-               return Apps.getApps();
+               apps.setToken(result);
+               return apps.getApps();
            }).then( (result) => {
                for (var i = 0; i < result.resources.length; i++)
                {
                    console.log("metadata" + JSON.stringify(result.resources[i].metadata));
                    console.log("entity" + JSON.stringify(result.resources[i].entity));
-                   var name = require("cfenv").getAppEnv("name");
-                   var url = require("cfenv").getAppEnv("url");
+                   var name = require("cfenv").getAppEnv().app.application_name;
                    console.log("cfenv-name: " + JSON.stringify(name));
-                   console.log("cfenv-url: " + JSON.stringify(url));
                    if (result.resources[i].entity.name == name)
                    {
                        var user = { username: username, permissions: "*" };
