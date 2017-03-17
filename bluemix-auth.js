@@ -47,7 +47,7 @@ module.exports = {
    },
    default: function() {
        return when.promise(function(resolve) {
-           resolve({anonymous: true, permissions:"read"});
+           resolve(null);
        });
    }
 }
