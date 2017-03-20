@@ -3,13 +3,14 @@
 Authentication module for Node-RED on Bluemix
 
 Using this module on Bluemix, you can access to Node-RED by IBM ID.
+(This module supports US south region)
 
 ## Method 1: Deploy Node-RED with this authentication module
 There is a setting example(bluemix-settings.js and package.json) on the following GitHub page.
 
 https://github.com/zuhito/node-red-bluemix-starter
 
-You can deploy secure Node-RED from the GitHub source using the following "Deploy to Bluemix" button.
+You can deploy secure Node-RED from the GitHub source using the following "Deploy to Bluemix" button. (Select "IBM Bluemix US south" as region)
 
 [![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/zuhito/node-red-bluemix-starter.git)
 

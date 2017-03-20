@@ -1,6 +1,6 @@
 {
   "name": "node-red-auth-contrib-bluemix",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Authentication module for Node-RED on Bluemix",
   "main": "bluemix-auth.js",
   "scripts": {
