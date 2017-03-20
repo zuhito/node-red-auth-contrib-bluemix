@@ -6,9 +6,12 @@ Using this module on Bluemix, you can access to Node-RED by IBM ID.
 
 ## Method 1: Deploy Node-RED with this authentication module
 There is a setting example(bluemix-settings.js and package.json) on the following GitHub page.
-You can deploy secure Node-RED using "Deploy to Bluemix" button.
 
 https://github.com/zuhito/node-red-bluemix-starter
+
+You can deploy secure Node-RED from the GitHub source using the following "Deploy to Bluemix" button.
+
+[![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/zuhito/node-red-bluemix-starter.git)
 
 ## Method 2: Custom configuration
 You can configure secure Node-RED manually as follows.
