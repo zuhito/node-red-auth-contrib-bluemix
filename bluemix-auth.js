@@ -1,5 +1,6 @@
 var when = require("when");
 var cf = require("cf-nodejs-client");
+var cfenv = require("cfenv");
 
 module.exports = {
     type: "credentials",
@@ -15,7 +16,20 @@ module.exports = {
     },
     authenticate: function(username, password) {
         return when.promise(function(resolve) {
-            var endpoint = "http://api.ng.bluemix.net";
+            var name = cfenv.getAppEnv().app.application_name;
+            var uri = cfenv.getAppEnv().app.application_uris[0];
+            console.log("uri=" + uri);
+            var endpoint = "http://" + uri.replace(name, "api");
+            console.log("endpoint=" + endpoint);
+
+            endpoint = endpoint.replace(/\.mybluemix.net$/, ".bluemix.net");
+            console.log("endpoint2=" + endpoint);
+            if (endpoint == "http://api.bluemix.net")
+            {
+                endpoint = "http://api.ng.bluemix.net";
+                console.log("endpoint3=" + endpoint);
+            }
+
             var cc = new cf.CloudController(endpoint);
             var uaa = new cf.UsersUAA;
             var apps = new cf.Apps(endpoint);
@@ -30,7 +44,7 @@ module.exports = {
                 var flag = true;
                 for (var i = 0; i < result.resources.length && flag; i++)
                 {
-                    var name = require("cfenv").getAppEnv().app.application_name;
+                    console.log("name=" + name);
                     if (result.resources[i].entity.name == name)
                     {
                         var user = { username: username, permissions: "*" };
