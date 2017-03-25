@@ -19,7 +19,7 @@ module.exports = {
             var name = cfenv.getAppEnv().app.application_name;
             var uri = cfenv.getAppEnv().app.application_uris[0];
             console.log("uri=" + uri);
-            var endpoint = "http://" + uri.replace(name, "api");
+            var endpoint = "https://" + uri.replace(name, "api");
             console.log("endpoint=" + endpoint);
 
             endpoint = endpoint.replace(/\.mybluemix.net$/, ".bluemix.net");
@@ -44,15 +44,18 @@ module.exports = {
                 var flag = true;
                 for (var i = 0; i < result.resources.length && flag; i++)
                 {
+                    console.log("result.resources[" + i + "].entity.name=" + result.resources[i].entity.name);
                     console.log("name=" + name);
                     if (result.resources[i].entity.name == name)
                     {
+                        console.log("success");
                         var user = { username: username, permissions: "*" };
                         flag = false;
                         resolve(user);
                     }
                 }
                 if (flag) {
+                    console.log("fail");
                     resolve(null);
                 }
             }).catch( (reason) => {
